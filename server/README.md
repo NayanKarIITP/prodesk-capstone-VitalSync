@@ -1,0 +1,234 @@
+# 🏥 VitalSync — Healthcare Patient Dashboard System
+
+---
+
+## 📌 Project Description
+
+**VitalSync** is a full-stack healthcare management platform designed to streamline interactions between patients and doctors.
+
+It provides a centralized system for:
+
+* Booking appointments
+* Managing medical history
+* Tracking prescriptions
+* Monitoring real-time doctor availability
+
+This application simulates a **real-world hospital dashboard system**, focusing on scalability, performance, and clean user experience — similar to modern healthcare platforms.
+
+---
+
+## 👨‍💻 Track
+
+**Full Stack Development**
+
+---
+
+## 🧠 Tech Stack
+
+### 🎨 Frontend
+
+* Next.js (App Router)
+* React.js
+* Tailwind CSS
+* Zustand (State Management)
+
+### ⚙️ Backend
+
+* Node.js
+* Express.js
+
+### 🗄️ Database
+
+* MongoDB (Mongoose ODM)
+
+### 🔐 Authentication
+
+* JSON Web Token (JWT)
+* Role-based access (Doctor / Patient)
+
+### ⚡ Real-Time
+
+* Socket.io
+
+### ☁️ Tools
+
+* Cloudinary (file uploads)
+* Axios (API calls)
+
+---
+
+## 🎯 Core Features
+
+### 🔐 Authentication System
+
+* Secure signup & login
+* JWT-based authentication
+* Role-based access
+
+### 👨‍⚕️ Doctor Dashboard
+
+* Manage appointments
+* Toggle availability
+* Add prescriptions
+* Access patient history
+
+### 🧑‍🤝‍🧑 Patient Dashboard
+
+* Book appointments
+* View doctor availability (real-time)
+* Access medical history
+* View prescriptions
+
+### 📅 Appointment Management
+
+* Book / cancel appointments
+* Time-slot scheduling
+* Status tracking:
+
+  * Pending
+  * Confirmed
+  * Completed
+
+### 📜 Medical History
+
+* Chronological records
+* Upload reports
+* Diagnosis tracking
+
+### 💊 Prescription System
+
+* Doctors create prescriptions
+* Patients view/download
+* Medicine + instructions
+
+### 🟢 Real-Time Availability
+
+* Live updates using Socket.io
+
+### 🔔 Notifications *(Planned)*
+
+* Appointment alerts
+* Prescription updates
+
+---
+
+## 🧩 System Architecture
+
+* Frontend → REST API → Backend
+* Backend → Business logic + Auth
+* MongoDB → Data storage
+* WebSockets → Real-time updates
+
+---
+
+## 🗃️ Database Design
+
+Core collections:
+
+* Users
+* Doctors
+* Appointments
+* MedicalRecords
+* Prescriptions
+* Availability
+
+📌 ERD included in repository
+
+---
+
+## 📁 Project Structure
+
+```
+/client
+  /app
+  /components
+  /store
+
+/server
+  /controllers
+  /models
+  /routes
+  /middlewares
+  /config
+```
+
+---
+
+## 🎨 UI Wireframes
+
+Designed using **Figma**
+
+🔗 **Figma Link:**
+https://www.figma.com/make/dDjQHnpmRImwmsCjc6fdjH/Healthcare-Dashboard-UI-Design
+
+### 🖥️ Screens
+
+#### 🔐 Login Page
+
+* Clean authentication UI
+* Role-based login
+
+#### 📊 Patient Dashboard
+
+* Stats cards
+* Doctor availability
+* Quick booking
+
+#### 👨‍⚕️ Doctor Dashboard
+
+* Appointment panel
+* Patient details
+* Prescription UI
+
+---
+
+## 📊 Architecture Diagram
+
+### 📷 ERD:
+![ERD](<Screenshot 2026-04-10 195205.png>)
+
+---
+
+## 🚀 Future Enhancements
+
+* 🤖 AI symptom checker
+* 📹 Video consultation
+* 💳 Payment integration
+* 📊 Analytics dashboard
+* 📱 PWA support
+
+---
+
+## 🎯 Project Goal
+
+To build a **production-ready healthcare system** demonstrating:
+
+* Full-stack development
+* Scalable architecture
+* Real-world problem solving
+* Clean code practices
+
+---
+
+## 💡 Why This Project?
+
+Healthcare systems require:
+
+* Reliability
+* Structured data
+* Real-time interaction
+
+**VitalSync solves these challenges with industry-level design.**
+
+---
+
+## 🏁 Status
+
+🚧 In Development (Capstone Phase)
+
+---
+
+## 👤 Author
+
+**Nayan Kar**
+IIT Patna
