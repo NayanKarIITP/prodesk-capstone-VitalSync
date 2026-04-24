@@ -48,15 +48,65 @@ router.get("/", protect, async (req, res) => {
   }
 });
 
+router.put("/:id", protect, async (req, res) => {
+  try {
+    const appointment = await Appointment.findById(req.params.id);
+
+    if (!appointment) {
+      return res.status(404).json({ msg: "Not found" });
+    }
+
+    // 🔐 Ownership check
+    if (appointment.patientId.toString() !== req.user.id) {
+      return res.status(403).json({ msg: "Not allowed" });
+    }
+
+    appointment.date = req.body.date || appointment.date;
+    appointment.time = req.body.time || appointment.time;
+
+    await appointment.save();
+
+    res.json(appointment);
+
+  } catch (err) {
+    res.status(500).json({ msg: "Error updating" });
+  }
+});
+
 
 // ✅ OPTIONAL: DELETE APPOINTMENT (🔥 bonus feature)
 router.delete("/:id", protect, async (req, res) => {
   try {
-    await Appointment.findByIdAndDelete(req.params.id);
-    res.json({ msg: "Appointment deleted" });
+    const appointment = await Appointment.findById(req.params.id);
+
+    if (!appointment) {
+      return res.status(404).json({ msg: "Not found" });
+    }
+
+    // 🔐 Ownership check
+    if (appointment.patientId.toString() !== req.user.id) {
+      return res.status(403).json({ msg: "Not allowed" });
+    }
+
+    await appointment.deleteOne();
+
+    res.json({ msg: "Deleted successfully" });
 
   } catch (err) {
-    res.status(500).json({ msg: "Error deleting appointment" });
+    res.status(500).json({ msg: "Error deleting" });
+  }
+});
+
+router.get("/my", protect, async (req, res) => {
+  try {
+    const appointments = await Appointment.find({
+      patientId: req.user.id
+    }).populate("doctorId", "name");
+
+    res.json(appointments);
+
+  } catch {
+    res.status(500).json({ msg: "Error" });
   }
 });
 

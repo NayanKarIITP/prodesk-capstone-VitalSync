@@ -1,16 +1,25 @@
-// middleware/authMiddleware.js
+
+
 import jwt from "jsonwebtoken";
 
 export const protect = (req, res, next) => {
-  const token = req.headers.authorization;
+  const header = req.headers.authorization;
 
-  if (!token) return res.status(401).json({ msg: "No token" });
+  // ❌ No token
+  if (!header || !header.startsWith("Bearer ")) {
+    return res.status(401).json({ msg: "No token" });
+  }
 
   try {
-    const decoded = jwt.verify(token, "secretkey");
-    req.user = decoded;
+    // ✅ Extract only token
+    const token = header.split(" ")[1];
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = decoded; // { id: ... }
+
     next();
-  } catch {
-    res.status(401).json({ msg: "Invalid token" });
+  } catch (err) {
+    return res.status(401).json({ msg: "Invalid token" });
   }
 };

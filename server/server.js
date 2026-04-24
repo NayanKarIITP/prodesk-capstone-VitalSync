@@ -8,6 +8,7 @@ import doctorRoutes from "./routes/doctorRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import prescriptionRoutes from "./routes/prescriptionRoutes.js";
 import availabilityRoutes from "./routes/availabilityRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/api/doctors", doctorRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/availability", availabilityRoutes);
+app.use("/api/payment", paymentRoutes);
 
 // DB
 mongoose.connect(process.env.MONGO_URI)

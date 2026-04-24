@@ -25,7 +25,8 @@ router.get("/", protect, async (req, res) => {
     const result = doctors.map((doc) => ({
       _id: doc._id,
       name: doc.name,
-      isAvailable: availabilityMap[doc._id.toString()] || false
+      // isAvailable: availabilityMap[doc._id.toString()] || false
+      isAvailable: true
     }));
 
     res.json(result);
