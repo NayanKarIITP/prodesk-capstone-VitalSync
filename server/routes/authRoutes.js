@@ -1,10 +1,13 @@
-// routes/authRoutes.js
 import express from "express";
 import { register, login } from "../controllers/authController.js";
+import { loginLimiter } from "../middleware/rateLimiter.js";
 
 const router = express.Router();
 
+// 🔐 REGISTER
 router.post("/register", register);
-router.post("/login", login);
+
+// 🔐 LOGIN (rate limited)
+router.post("/login", loginLimiter, login);
 
 export default router;
