@@ -61,9 +61,9 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("MongoDB Connected");
   })
   .catch(() => {
-    console.error("Database connection failed");
+    console.error("Database connection failed",err);
   });
-
+  
 
   //  SERVER 
 app.listen(5000, () => {

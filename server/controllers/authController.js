@@ -97,7 +97,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 
-
 // 🔥 ZOD SCHEMAS
 const registerSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -111,10 +110,12 @@ const loginSchema = z.object({
   password: z.string().min(6, "Password required")
 });
 
-
 // ================= REGISTER =================
 export const register = async (req, res) => {
   try {
+
+    console.log("📩 Register Request:", req.body);
+
     // ✅ ZOD VALIDATION
     const parsed = registerSchema.safeParse(req.body);
 
@@ -128,8 +129,11 @@ export const register = async (req, res) => {
 
     // 🔍 check if user exists
     const existingUser = await User.findOne({ email });
+
     if (existingUser) {
-      return res.status(400).json({ msg: "User already exists" });
+      return res.status(400).json({
+        msg: "User already exists"
+      });
     }
 
     // 🔐 hash password
@@ -151,15 +155,23 @@ export const register = async (req, res) => {
       role: user.role
     });
 
-  } catch {
-    res.status(500).json({ msg: "Registration failed" });
+  } catch (err) {
+
+    console.error("🔥 REGISTER ERROR:", err);
+
+    res.status(500).json({
+      msg: "Registration failed",
+      error: err.message
+    });
   }
 };
-
 
 // ================= LOGIN =================
 export const login = async (req, res) => {
   try {
+
+    console.log("📩 Login Request:", req.body);
+
     // ✅ ZOD VALIDATION
     const parsed = loginSchema.safeParse(req.body);
 
@@ -175,14 +187,18 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ msg: "User not found" });
+      return res.status(400).json({
+        msg: "User not found"
+      });
     }
 
     // 🔐 check password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ msg: "Invalid password" });
+      return res.status(400).json({
+        msg: "Invalid password"
+      });
     }
 
     // 🎟️ generate token
@@ -203,7 +219,13 @@ export const login = async (req, res) => {
       }
     });
 
-  } catch {
-    res.status(500).json({ msg: "Login failed" });
+  } catch (err) {
+
+    console.error("🔥 LOGIN ERROR:", err);
+
+    res.status(500).json({
+      msg: "Login failed",
+      error: err.message
+    });
   }
 };
