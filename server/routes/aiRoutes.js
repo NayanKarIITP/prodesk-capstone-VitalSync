@@ -32,7 +32,7 @@ router.post("/suggest", protect, async (req, res) => {
 
     if (!parsed.success) {
       return res.status(400).json({
-        msg: parsed.error.errors[0].message
+        msg: parsed.error.issues[0].message
       });
     }
 

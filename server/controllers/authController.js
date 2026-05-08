@@ -121,7 +121,7 @@ export const register = async (req, res) => {
 
     if (!parsed.success) {
       return res.status(400).json({
-        msg: parsed.error.errors[0].message
+        msg: parsed.error.issues[0].message
       });
     }
 
@@ -177,7 +177,7 @@ export const login = async (req, res) => {
 
     if (!parsed.success) {
       return res.status(400).json({
-        msg: parsed.error.errors[0].message
+        msg: parsed.error.issues[0].message
       });
     }
 
